@@ -1,10 +1,10 @@
 # Tasks App
 
-<a href="https://reactnative.dev/" target="_blank"><g><circle cx="0" cy="0" r="30" fill="#61dafb"></circle><g stroke="#61dafb" stroke-width="15" fill="none" id="logo"><ellipse rx="165" ry="64"></ellipse><ellipse rx="165" ry="64" transform="rotate(60)"></ellipse><ellipse rx="165" ry="64" transform="rotate(120)"></ellipse></g></g></a>
+<a href="https://reactnative.dev/" target="_blank"><img src="https://reactnative.dev/img/tiny_logo.png" alt="ReactNativeLogo"/></a>
 
 > My first React Native App from Udemy course: "React Native: Desenvolva APPS Nativas para Android e iOS"
 
-It is intended to help in task management, displaying the day's tasks to the user.
+It helps in task management, displaying the day's tasks to the user.
 
 ## Development setup
 
