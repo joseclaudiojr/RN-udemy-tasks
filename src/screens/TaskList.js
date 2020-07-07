@@ -1,6 +1,7 @@
 import 'moment/locale/pt-br'
 
 import {
+	Alert,
 	ImageBackground,
 	Platform,
 	StyleSheet,
@@ -10,6 +11,7 @@ import {
 } from 'react-native'
 import React, {Component} from 'react'
 
+import AddTask from './AddTask'
 import {FlatList} from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {SafeAreaView} from 'react-navigation'
@@ -21,6 +23,7 @@ import todayImage from '../../assets/imgs/today.jpg'
 export default class TaskList extends Component {
 	state = {
 		showDoneTasks: true,
+		showAddTask: false,
 		visibleTasks: [],
 		tasks: [
 			{
@@ -67,6 +70,22 @@ export default class TaskList extends Component {
 		this.setState({visibleTasks})
 	}
 
+	addTask = newTask => {
+		if (!newTask.desc || !newTask.desc) {
+			Alert.alert('Dados Inválidos', 'Descrição não informada!')
+			return false
+		}
+		const tasks = [...this.state.tasks]
+		tasks.push({
+			id: Math.random(),
+			desc: newTask.desc,
+			estimateAt: newTask.date,
+			doneAt: null,
+		})
+		this.setState({tasks, showAddTask: false}, this.filterTasks)
+		return true
+	}
+
 	render() {
 		const today = moment()
 			.locale('pt-br')
@@ -75,6 +94,11 @@ export default class TaskList extends Component {
 			<>
 				{/* <SafeAreaView /> */}
 				<View style={styles.container}>
+					<AddTask
+						isVisible={this.state.showAddTask}
+						onCancel={() => this.setState({showAddTask: false})}
+						onSave={this.addTask}
+					/>
 					<ImageBackground source={todayImage} style={styles.background}>
 						<View style={styles.iconBar}>
 							<TouchableOpacity onPress={this.toggleFilter}>
@@ -99,6 +123,12 @@ export default class TaskList extends Component {
 							)}
 						/>
 					</View>
+					<TouchableOpacity
+						style={styles.addButton}
+						onPress={() => this.setState({showAddTask: true})}
+						activeOpacity={0.7}>
+						<Icon name="plus" size={20} color={commonStyles.colors.secondary} />
+					</TouchableOpacity>
 				</View>
 			</>
 		)
@@ -138,5 +168,16 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-end',
 		marginHorizontal: 20,
 		marginTop: Platform.OS === 'ios' ? 40 : 10,
+	},
+	addButton: {
+		position: 'absolute',
+		right: 30,
+		bottom: 30,
+		width: 50,
+		height: 50,
+		borderRadius: 25,
+		backgroundColor: commonStyles.colors.today,
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 })
