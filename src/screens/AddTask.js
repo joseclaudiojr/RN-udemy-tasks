@@ -38,8 +38,10 @@ export default class AddTask extends Component {
 	}
 
 	getDatePicker = () => {
+		console.log('this.state.date', this.state.date)
 		let datePicker = (
 			<DateTimePcker
+				style={styles.datePicker}
 				value={this.state.date}
 				onChange={(_, date) => this.setState({date, showDatePicker: false})}
 				mode="date"
@@ -70,11 +72,10 @@ export default class AddTask extends Component {
 				visible={this.props.isVisible}
 				onRequestClose={this.props.onCancel}
 				animationType="slide">
-				<TouchableWithoutFeedback onPress={this.props.onCancel}>
-					<View style={styles.background} />
-				</TouchableWithoutFeedback>
+				<View style={styles.background} />
 				<View style={styles.container}>
 					<Text style={styles.header}>Nova Tarefa</Text>
+					<View style={styles.line} />
 					<TextInput
 						style={styles.input}
 						placeholder="Informe a descrição..."
@@ -84,16 +85,18 @@ export default class AddTask extends Component {
 					{this.getDatePicker()}
 					<View style={styles.buttons}>
 						<TouchableOpacity onPress={this.props.onCancel}>
-							<Text style={styles.button}>Cancelar</Text>
+							<View style={styles.buttonsContainer}>
+								<Text style={styles.button}>Cancelar</Text>
+							</View>
 						</TouchableOpacity>
 						<TouchableOpacity onPress={this.save}>
-							<Text style={styles.button}>Salvar</Text>
+							<View style={styles.buttonsContainer}>
+								<Text style={styles.button}>Salvar</Text>
+							</View>
 						</TouchableOpacity>
 					</View>
 				</View>
-				<TouchableWithoutFeedback onPress={this.props.onCancel}>
-					<View style={styles.background} />
-				</TouchableWithoutFeedback>
+				<View style={styles.background} />
 			</Modal>
 		)
 	}
@@ -105,7 +108,7 @@ const styles = StyleSheet.create({
 		backgroundColor: 'rgba(0,0,0,0.7)',
 	},
 	container: {
-		backgroundColor: '#FFF',
+		backgroundColor: commonStyles.colors.today,
 	},
 	header: {
 		fontFamily: commonStyles.fontFamily,
@@ -119,10 +122,19 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'flex-end',
 	},
+	buttonsContainer: {
+		borderWidth: 0.5,
+		borderRadius: 6,
+		borderColor: commonStyles.colors.secondary,
+		margin: 5,
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
 	button: {
-		margin: 20,
-		marginRight: 30,
-		color: commonStyles.colors.today,
+		width: 60,
+		margin: 15,
+		color: commonStyles.colors.secondary,
+		textAlign: 'center',
 	},
 	input: {
 		padding: 10,
@@ -130,13 +142,23 @@ const styles = StyleSheet.create({
 		height: 40,
 		margin: 15,
 		backgroundColor: 'white',
-		borderWidth: 2,
-		borderColor: '#E3E3E3',
+		// borderWidth: 2,
+		// borderColor: '#E3E3E3',
 		borderRadius: 6,
 	},
 	date: {
 		fontFamily: commonStyles.fontFamily,
 		fontSize: 20,
 		marginLeft: 15,
+		color: commonStyles.colors.secondary,
+	},
+	datePicker: {
+		// backgroundColor: commonStyles.colors.today,
+		// color: commonStyles.colors.mainText,
+	},
+	line: {
+		borderWidth: 0.5,
+		borderColor: commonStyles.colors.secondary,
+		marginHorizontal: 15,
 	},
 })
