@@ -3,15 +3,19 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-         <item name="android:datePickerDialogTheme">@style/Dialog.Theme</item>
+        <item name="colorAccent">#B13B44</item>                   
+        <item name="colorControlActivated">#B13B44</item>         
+        <item name="android:textColorPrimary">#000</item>          
+        <item name="android:textColorSecondary">#B13B44</item>   
+         <!-- <item name="android:datePickerDialogTheme">@style/Dialog.Theme</item> -->
 </style>
 
-<style name="Dialog.Theme" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorAccent">#B13B44</item>                     <!--header background-->
-        <item name="colorControlActivated">#B13B44</item>           <!--Dia Selecionado-->
-        <item name="android:textColorPrimary">#000</item>           <!--Cor do texto dos Dias-->
-        <item name="android:textColorSecondary">#B13B44</item>         <!--Cor do texto das Semanas-->
-</style>
+<!-- <style name="Dialog.Theme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">#B13B44</item>                     
+        <item name="colorControlActivated">#B13B44</item>           
+        <item name="android:textColorPrimary">#000</item>           
+        <item name="android:textColorSecondary">#B13B44</item>      
+</style> -->
 <!-- https://cmichel.io/styling-datepickerandroid-in-react-native -->
         
 
