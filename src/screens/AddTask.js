@@ -36,21 +36,26 @@ export default class AddTask extends Component {
 			this.props.onSave(newTask) &&
 			this.setState({...initialState}) //Reset values only when saved successfully
 	}
-
+	setDate = (event, date) => {
+		if (date !== undefined) {
+			this.setState({date})
+		}
+		this.setState({showDatePicker: false})
+	}
 	getDatePicker = () => {
 		console.log('this.state.date', this.state.date)
+		const dateString = moment(this.state.date).format(
+			'ddd, D [de] MMMM [de] YYYY',
+		)
 		let datePicker = (
 			<DateTimePcker
 				style={styles.datePicker}
 				value={this.state.date}
-				onChange={(_, date) => this.setState({date, showDatePicker: false})}
+				onChange={this.setDate}
 				mode="date"
 			/>
 		)
 
-		const dateString = moment(this.state.date).format(
-			'ddd, D [de] MMMM [de] YYYY',
-		)
 		if (Platform.OS === 'android') {
 			datePicker = (
 				<View>
@@ -137,6 +142,7 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 	},
 	input: {
+		color: commonStyles.colors.today,
 		padding: 10,
 		fontFamily: commonStyles.fontFamily,
 		height: 40,
