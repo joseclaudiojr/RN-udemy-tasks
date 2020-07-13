@@ -41,7 +41,7 @@ José Claudio Vianna Jr. – [@joseclaudiojr](https://www.linkedin.com/in/josecl
 
 ## License
 
-MIT © [Tasks](https://raw.githubusercontent.com/joseclaudiojr/ReactNativeCourseUdemy_Tasks/master/LICENSE)
+MIT © [Tasks](https://github.com/joseclaudiojr/ReactNativeCourseUdemy_Tasks/blob/master/LICENSE)
 
 <!-- Markdown link & img dfn's -->
 
