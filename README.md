@@ -39,7 +39,9 @@ José Claudio Vianna Jr. – [@joseclaudiojr](https://www.linkedin.com/in/josecl
 4. Push to the branch (`git push origin feature/fooBar`)
 5. Create a new Pull Request
 
-MIT © [Tasks Backend](https://raw.githubusercontent.com/joseclaudiojr/ReactNativeCourseUdemy_Tasks/master/LICENSE)
+## License
+
+MIT © [Tasks](https://raw.githubusercontent.com/joseclaudiojr/ReactNativeCourseUdemy_Tasks/master/LICENSE)
 
 <!-- Markdown link & img dfn's -->
 
