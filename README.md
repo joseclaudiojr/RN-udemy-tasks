@@ -33,7 +33,7 @@ José Claudio Vianna Jr. – [@joseclaudiojr](https://www.linkedin.com/in/josecl
 
 ## Contributing
 
-1. Fork it (<https://github.com/joseclaudiojr/node-auth.git>)
+1. Fork it (<https://github.com/joseclaudiojr/ReactNativeCourseUdemy_Tasks.git>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
