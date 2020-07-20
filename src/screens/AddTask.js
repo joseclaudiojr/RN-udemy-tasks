@@ -43,7 +43,7 @@ export default class AddTask extends Component {
 		this.setState({showDatePicker: false})
 	}
 	getDatePicker = () => {
-		console.log('this.state.date', this.state.date)
+		//console.log('this.state.date', this.state.date)
 		const dateString = moment(this.state.date).format(
 			'ddd, D [de] MMMM [de] YYYY',
 		)

@@ -16,10 +16,11 @@ import commonStyles from '../commonStyles'
 
 const initialState = {
 	name: '',
-	email: '',
-	password: '',
+	email: 'juca2@juca.com',
+	password: 'jucajuca',
 	confirmPassword: '',
 	stageNew: false,
+	loading: false,
 }
 export default class Auth extends Component {
 	state = {
@@ -27,6 +28,7 @@ export default class Auth extends Component {
 	}
 
 	singninOrSignup = () => {
+		this.setState({loading: true})
 		if (this.state.stageNew) {
 			this.signup()
 		} else {
@@ -36,7 +38,7 @@ export default class Auth extends Component {
 
 	signup = async () => {
 		try {
-			console.log('${server}/signup', `${server}/signup`)
+			//console.log('${server}/signup', `${server}/signup`)
 			await axios.post(`${server}/signup`, {
 				name: this.state.name,
 				email: this.state.email,
@@ -62,6 +64,7 @@ export default class Auth extends Component {
 			this.props.navigation.navigate('Home')
 		} catch (e) {
 			showError(e)
+			this.setState({loading: false})
 		}
 	}
 	render() {
@@ -72,8 +75,8 @@ export default class Auth extends Component {
 			validations.push(this.state.name && this.state.name.trim.length >= 2)
 			validations.push(this.state.password === this.state.confirmPassword)
 		}
+		validations.push(!this.state.loading)
 		const validForm = validations.reduce((total, atual) => total && atual)
-
 		return (
 			<ImageBackground style={styles.background} source={backgroundImage}>
 				<Text style={styles.title}>Tasks</Text>
@@ -87,8 +90,9 @@ export default class Auth extends Component {
 							placeholder="Nome"
 							placeholderTextColor="#3337"
 							value={this.state.name}
-							style={styles.input}
 							onChangeText={name => this.setState({name})}
+							style={[styles.input, this.state.loading && styles.inputDisable]}
+							editable={!this.state.loading}
 						/>
 					)}
 					<AuthInput
@@ -96,17 +100,19 @@ export default class Auth extends Component {
 						placeholder="E-mail"
 						placeholderTextColor="#3337"
 						value={this.state.email}
-						style={styles.input}
 						onChangeText={email => this.setState({email})}
+						style={[styles.input, this.state.loading && styles.inputDisable]}
+						editable={!this.state.loading}
 					/>
 					<AuthInput
 						icon="lock"
 						placeholder="Senha"
 						placeholderTextColor="#3337"
 						value={this.state.password}
-						style={styles.input}
 						onChangeText={password => this.setState({password})}
 						secureTextEntry={true}
+						style={[styles.input, this.state.loading && styles.inputDisable]}
+						editable={!this.state.loading}
 					/>
 					{this.state.stageNew && (
 						<AuthInput
@@ -114,9 +120,10 @@ export default class Auth extends Component {
 							placeholder="Confirmação de Senha"
 							placeholderTextColor="#3337"
 							value={this.state.confirmPassword}
-							style={styles.input}
 							onChangeText={confirmPassword => this.setState({confirmPassword})}
 							secureTextEntry={true}
+							style={[styles.input, this.state.loading && styles.inputDisable]}
+							editable={!this.state.loading}
 						/>
 					)}
 					<TouchableOpacity
@@ -174,6 +181,9 @@ const styles = StyleSheet.create({
 	input: {
 		marginTop: 10,
 		backgroundColor: '#FFF',
+	},
+	inputDisable: {
+		backgroundColor: '#4449',
 	},
 	button: {
 		backgroundColor: '#080',
