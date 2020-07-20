@@ -10,6 +10,7 @@ import React, {Component} from 'react'
 import {server, showError, showSucces} from '../common'
 
 import AuthInput from '../components/AuthInput'
+import Loading from './Loading'
 import axios from 'axios'
 import backgroundImage from '../../assets/imgs/login.jpg'
 import commonStyles from '../commonStyles'
@@ -79,6 +80,7 @@ export default class Auth extends Component {
 		const validForm = validations.reduce((total, atual) => total && atual)
 		return (
 			<ImageBackground style={styles.background} source={backgroundImage}>
+				<Loading isVisible={this.state.loading} />
 				<Text style={styles.title}>Tasks</Text>
 				<View style={styles.formContainer}>
 					<Text style={styles.subtitle}>
